@@ -26,15 +26,19 @@ def yasam_simulatoru():
     else:
         print(f"Hoş geldin! {veri['yas']} yaşında, {veri['meslek']} olarak seni hatırlıyorum.")
 
-    karar = input("Ne konuşalım? (ör: 'iş değiştir', 'çıkış') ").lower()
-    if karar == "çıkış":
-        print("Görüşürüz!")
-    elif "iş değiştir" in karar:
-        basari = random.randint(50, 90) - (veri["yas"] // 10)
-        print(f"Simülasyon: İş değiştirme başarı olasılığı: %{basari}")
-        sleep(1)
-        print("Başarılı!" if basari > 70 else "Zorlanabilirsin, ama devam!")
-        veri["son_karar"] = "iş değiştir"
-        veri_kaydet(veri)
+    while True:
+        karar = input("Ne konuşalım? (ör: 'is degistir', 'cikis') ").lower().replace("ı", "i").replace("ş", "s")
+        if karar == "cikis":
+            print("Görüşürüz!")
+            break
+        elif "is degistir" in karar:
+            basari = random.randint(50, 90) - (veri["yas"] // 10)
+            print(f"Simülasyon: İş değiştirme başarı olasılığı: %{basari}")
+            sleep(1)
+            print("Başarılı!" if basari > 70 else "Zorlanabilirsin, ama devam!")
+            veri["son_karar"] = "is degistir"
+            veri_kaydet(veri)
+        else:
+            print("Bunu anlayamadım, başka bir şey dene! (ör: 'is degistir', 'cikis')")
 
 yasam_simulatoru()
